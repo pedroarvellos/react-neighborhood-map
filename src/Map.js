@@ -38,14 +38,16 @@ const mapWithSearchBox = compose(
 
         onBoundsChange: () => {
           this.setState({
-            bounds: ref.map.getBounds(),
+            bounds: refs.map.getBounds(),
             center: refs.map.getCenter()
           })
         },
 
+        /* Search box functions */
         // To know when search box and map were mounted.
         searchBoxMounted: ref => {
           refs.searchBox = ref
+          debugger
         },
 
         // Main function to change where the map center is, where the marker is.
@@ -71,14 +73,13 @@ const mapWithSearchBox = compose(
     defaultZoom={9}
     ref={props.mapMounted}
     center={props.center}
-  >
-
+    >
     <SearchBox
       ref={props.searchBoxMounted}
       controlPosition={google.maps.ControlPosition.TOP_LEFT}
       bounds={props.bounds}
       onPlacesChanged={props.onPlacesChanged}
-    >
+      >
       <input placeholder = "Write your address"
         style={{
           height: `30px`,
