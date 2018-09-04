@@ -14,7 +14,7 @@ const mapWithSearchBox = compose(
   // Default props which can be overwritten as this component is called.
   withProps({
     containerElement:<div style={{height: '100%'}}/>,
-    mapElement:<div style={{height: `600px`}}/>,
+    mapElement:<div style={{height: `100%`}}/>,
     loadingElement:<div style={{height: '100%'}}/>,
     googleMapURL:'https://maps.googleapis.com/maps/api/js?key=AIzaSyCRQSQd7cwt1BdrCbwrB2gc01WwETqooZc&v=3&libraries=places,geometry,drawing'
   }),

@@ -4,11 +4,10 @@
   "private": true,
   "dependencies": {
     "react": "^16.4.2",
-    "react-bootstrap": "^0.32.3",
-    "react-bootstrap-sidebar": "0.0.1",
     "react-dom": "^16.4.2",
     "react-google-maps": "^9.4.5",
     "react-scripts": "1.1.5",
+    "reactstrap": "^6.4.0",
     "recompose": "^0.30.0"
   },
   "scripts": {

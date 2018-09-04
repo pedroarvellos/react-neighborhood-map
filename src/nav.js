@@ -1,28 +1,85 @@
 /*eslint-disable no-undef*/
-import React, {Component} from 'react'
-import {Navbar, Nav, NavItem, Button, Glyphicon} from 'react-bootstrap'
-import Sidebar from 'react-bootstrap-sidebar'
+import React from "react";
+import { Form, FormGroup, Input, Nav, NavItem } from "reactstrap";
+import {compose, lifecycle, withProps} from 'recompose'
+import SearchBox from 'react-google-maps/lib/components/places/SearchBox'
+import {GoogleMap, withGoogleMap, withScriptjs, Marker} from 'react-google-maps'
 
-class NavComponent extends Component {
-  updateModal = isVisible => {
-    this.state.isVisible = isVisible;
-    this.forceUpdate();
-  }
+const NavComponent = compose(
+  lifecycle({
+    componentDidMount(){
+      const refs = {}
 
-  render() {
-    return(
-      <div>
-        <Button bsStyle="primary" onClick={ () => this.updateModal(true) }><Glyphicon glyph="menu-hamburger"/></Button>
-        <Sidebar side='left' isVisible={ this.state.isVisible } onHide={ () => this.updateModal(false) }>
-          <Nav>
-            <NavItem href="#">Link 1</NavItem>
-            <NavItem href="#">Link 2</NavItem>
-            <NavItem href="#">Link 3</NavItem>
-            <NavItem href="#">Link 4</NavItem>
-          </Nav>
-        </Sidebar>
-      </div>
-    )
-  }
-}
+      // Some methods are declared.
+      this.setState({
+        bounds: null,
+
+        mapMounted: ref => {
+          refs.map = ref
+        },
+
+        center: {
+          lat: 41.9,
+          lng: -87.624
+        },
+
+        onBoundsChange: () => {
+          this.setState({
+            bounds: refs.map.getBounds(),
+            center: refs.map.getCenter()
+          })
+        },
+
+        /* Search box functions */
+        // To know when search box and map were mounted.
+        searchBoxMounted: ref => {
+          refs.searchBox = ref
+          debugger
+        },
+
+        // Main function to change where the map center is, where the marker is.
+        onPlacesChanged: () => {
+          const places = refs.searchBox.getPlaces()
+          const bounds = new google.maps.LatLngBounds()
+
+          const nextPlaces = places.map(place => {
+            return {position: place.geometry.location}
+          });
+
+          this.setState({
+            center: nextPlaces[0].position
+          })
+        }
+      })
+    }
+  }),
+  withScriptjs,
+  withGoogleMap
+)(props =>
+  <div>
+    <Nav vertical class = "nav-bar-location">
+      <NavItem>
+        <Form>
+          <FormGroup>
+            {/* <Input type="text" name="address or place" id="address-location" placeholder="Write an address or a place" /> */}
+            <SearchBox
+              ref={props.searchBoxMounted}
+              controlPosition={google.maps.ControlPosition.TOP_LEFT}
+              bounds={props.bounds}
+              onPlacesChanged={props.onPlacesChanged}
+              >
+              <input placeholder = "Write your address"
+                style={{
+                  height: `30px`,
+                  width: `230px`,
+                  margin: `15px`
+                }}/>
+            </SearchBox>
+          </FormGroup>
+        </Form>
+      </NavItem>
+    </Nav>
+  </div>
+)
+
 export default NavComponent;
