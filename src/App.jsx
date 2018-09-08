@@ -27,6 +27,38 @@ class App extends Component {
             lng: -45.9351163453684
           },
           id: '4e8ce18db8f711fd9749a92b'
+        },
+        {
+          name: 'Don Panetteria',
+          center: {
+            lat: -22.225146220920166,
+            lng: -45.93891919408967
+          },
+          id: '5064bf01498ee7dbb93160afs'
+        },
+        {
+          name: 'T-Max',
+          center: {
+            lat: -22.229564362613292,
+            lng: -45.931476952386525
+          },
+          id: '564faa64498edada318a26cd'
+        },
+        {
+          name: 'Divina Maria Café & Cultura',
+          center: {
+            lat: -22.23347056429007,
+            lng: -45.93313954621554
+          },
+          id: '4e73a604d16472c037433ca3'
+        },
+        {
+          name: 'República Bar',
+          center: {
+            lat: -22.233756905893188,
+            lng: -45.93329260230888
+          },
+          id: '4cb3f7cbb4b0a35de71364ce'
         }
       ]
     }
@@ -44,7 +76,7 @@ class App extends Component {
     return (
       <div className="App">
           <Col md={3}>
-            <Search></Search>
+            <Search places = {this.state.places}></Search>
           </Col>
           <Col md={9}>
             <Map
