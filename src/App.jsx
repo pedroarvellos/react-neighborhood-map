@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import Map from './Map.jsx'
 import Search from './Search.jsx'
-import { Col, Row } from 'reactstrap'
+import { Col } from 'reactstrap'
 
 class App extends Component {
   render() {
@@ -63,16 +63,6 @@ class App extends Component {
       ]
     }
 
-    this.getVenues = () => {
-      fetch('https://api.foursquare.com/v2/venues/explore?client_id=CLIENT_ID&client_secret=CLIENT_SECRET&v=20180323&limit=1&ll=40.7243,-74.0018&query=coffee')
-      .then(function() {
-          // Code for handling API response
-      })
-      .catch(function() {
-          // Code for handling errors
-      });
-    }
-
     return (
       <div className="App">
           <Col md={3}>
@@ -85,7 +75,7 @@ class App extends Component {
               containerElement={<div style={{ height: `44em` }} />}
               mapElement={<div style={{ height: `100%`, width:`100%` }}></div>}
               loadingElement={<div style={{ height: `100%` }}></div>}
-              googleMapURL='https://maps.googleapis.com/maps/api/js?key=AIzaSyCRQSQd7cwt1BdrCbwrB2gc01WwETqooZc&v=3&callback=initMap&libraries=places,geometry,drawing'
+              googleMapURL='https://maps.googleapis.com/maps/api/js?key=AIzaSyCRQSQd7cwt1BdrCbwrB2gc01WwETqooZc&v=3&libraries=places,geometry,drawing'
             />
           </Col>
       </div>
