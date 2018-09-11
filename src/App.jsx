@@ -61,7 +61,11 @@ class App extends Component {
       }
     ],
 
-    placesFiltered: []
+    placesFiltered: [],
+
+    placeToShow:[],
+
+    isOpen: false
   }
 
   componentDidMount(){
@@ -71,7 +75,6 @@ class App extends Component {
   }
 
   onInputChanged = (input) => {
-
     this.setState(state => ({
       placesFiltered: state.places.filter(place => {
         return place.name.indexOf(input) > -1
@@ -79,18 +82,32 @@ class App extends Component {
     }))
   }
 
+  onToggleOpen = (placeToShow, isOpen) => {
+    this.setState({
+      placeToShow: placeToShow,
+      isOpen: isOpen
+    });
+  }
+
   render() {
     return (
       <div className="App">
           <Col md={3}>
-            <Search places = {this.state.placesFiltered} onInputChanged = {(input) => this.onInputChanged(input)}></Search>
+            <Search
+              places = {this.state.placesFiltered}
+              onInputChanged = {(input) => this.onInputChanged(input)}
+              onToggleOpen={(placeToShow, isOpen) => this.onToggleOpen(placeToShow, isOpen)}
+            />
           </Col>
           <Col md={9}>
             <Map
               places = {this.state.placesFiltered}
+              placeToShow={this.state.placeToShow}
+              isOpen={this.state.isOpen}
               center={this.state.center}
-              containerElement={<div style={{ height: `44em` }} />}
-              mapElement={<div style={{ height: `100%`, width:`100%` }}></div>}
+              onToggleOpen={(placeToShow, isOpen) => this.onToggleOpen(placeToShow, isOpen)}
+              containerElement={<div style={{ height: `67em` }} />}
+              mapElement={<div style={{ height: `100%` }} />}
               loadingElement={<div style={{ height: `100%` }}></div>}
               googleMapURL='https://maps.googleapis.com/maps/api/js?key=AIzaSyCRQSQd7cwt1BdrCbwrB2gc01WwETqooZc&v=3&libraries=places,geometry,drawing'
             />

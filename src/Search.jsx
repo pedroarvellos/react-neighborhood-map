@@ -1,10 +1,11 @@
 import React, { Component } from 'react'
 import { Form, FormGroup, Label, Input, ListGroup, ListGroupItem } from 'reactstrap'
+import './Search.css'
 
 class Search extends Component {
   render() {
     this.renderPlaces = place => {
-      return (<ListGroupItem>{place.name}</ListGroupItem>)
+      return (<ListGroupItem className={'nav-option hover-option'} cursor={'pointer'} key={place.id} onClick={() => this.props.onToggleOpen(place.id, true)}>{place.name}</ListGroupItem>)
     }
 
     this.onChange = event => {
