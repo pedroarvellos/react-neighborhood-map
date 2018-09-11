@@ -1,9 +1,9 @@
 /*eslint-disable no-undef*/
 
 import React from 'react'
-import { compose } from 'recompose'
+import { compose, lifecycle } from 'recompose'
 import { GoogleMap, withGoogleMap, withScriptjs, Marker, InfoWindow } from 'react-google-maps'
-
+import MarkerElement from './MarkerElement'
 
 const Map = compose(withScriptjs, withGoogleMap)((props) =>
   <GoogleMap
@@ -12,16 +12,13 @@ const Map = compose(withScriptjs, withGoogleMap)((props) =>
   >
     {props.places.map(row => {
       return (
-        <Marker position={row.center} key={row.id} id={row.id} onClick={() => props.onToggleOpen(row.id, true)}>
-          {
-            row.id === props.placeToShow  && props.isOpen &&
-            <InfoWindow>
-              <div>
-                Hello!
-              </div>
-            </InfoWindow>
-          }
-        </Marker>
+        <MarkerElement
+          row={row}
+          placeToShow={props.placeToShow}
+          isOpen={props.isOpen}
+          onToggleOpen={(placeToShow, isOpen) => props.onToggleOpen(placeToShow, isOpen)}
+          places={props.places}
+        />
       )
     })}
   </GoogleMap>

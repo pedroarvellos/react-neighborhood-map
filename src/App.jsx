@@ -33,7 +33,7 @@ class App extends Component {
           lat: -22.225146220920166,
           lng: -45.93891919408967
         },
-        id: '5064bf01498ee7dbb93160afs'
+        id: '5064bf01498ee7dbb93160af'
       },
       {
         name: 'T-Max',
@@ -83,10 +83,7 @@ class App extends Component {
   }
 
   onToggleOpen = (placeToShow, isOpen) => {
-    this.setState({
-      placeToShow: placeToShow,
-      isOpen: isOpen
-    });
+    this.setState({ placeToShow, isOpen });
   }
 
   render() {
