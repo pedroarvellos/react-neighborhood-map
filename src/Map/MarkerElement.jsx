@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { Marker, InfoWindow } from 'react-google-maps'
-import { CardBody, CardTitle, CardSubtitle, CardText, Row, Col, Media } from 'reactstrap'
+import { CardBody, CardTitle, CardSubtitle, CardText, Row, Col } from 'reactstrap'
 import { getElementInfo } from './../Utils/FourSquareDAO'
 
 class MarkerElement extends Component {
@@ -19,12 +19,12 @@ class MarkerElement extends Component {
     const { placeAdditionalDetails } = this.state;
     const { row, onToggleOpen, placeToShow, isOpen } = this.props;
     return (
-      <Marker position={ row.center } key={ row.id } id={ row.id } onClick={() => onToggleOpen(row.id, true)}>
+      <Marker position={ row.center } id={ row.id } onClick={() => onToggleOpen(row.id, true)}>
           {
             row.id === placeToShow  && isOpen &&
             <Row>
               <InfoWindow>
-                    <CardBody key={ row.id }>
+                    <CardBody>
                         <Col md={6}>
                           <CardTitle>
                             {
@@ -44,7 +44,7 @@ class MarkerElement extends Component {
                               <CardText>
                                 {
                                   placeAdditionalDetails.location !== undefined &&
-                                  placeAdditionalDetails.location.address || 'Address not found'
+                                  placeAdditionalDetails.location.address ?  placeAdditionalDetails.location.address : 'Address not found'
                                 }
                               </CardText>
                             </div>
@@ -55,7 +55,7 @@ class MarkerElement extends Component {
                           placeAdditionalDetails !== undefined &&
                           placeAdditionalDetails.bestPhoto !== undefined &&
                           <div>
-                            <img src={`${placeAdditionalDetails.bestPhoto.prefix}200x133${placeAdditionalDetails.bestPhoto.suffix}`} alt={ `${this.props.row.name} Image`}/>
+                            <img src={`${placeAdditionalDetails.bestPhoto.prefix}200x133${placeAdditionalDetails.bestPhoto.suffix}`} alt={ `${this.props.row.name}`}/>
                           </div>
                         }
                         </Col>

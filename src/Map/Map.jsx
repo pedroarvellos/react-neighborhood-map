@@ -18,6 +18,7 @@ const Map = compose(withScriptjs, withGoogleMap)((props) =>
           isOpen={ props.isOpen }
           onToggleOpen={ (placeToShow, isOpen) => props.onToggleOpen(placeToShow, isOpen) }
           places={ props.places }
+          key={ row.id }
         />
       )
     })}
