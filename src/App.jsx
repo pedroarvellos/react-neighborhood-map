@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import Map from './Map.jsx'
-import Search from './Search.jsx'
+import Map from './Map/Map.jsx'
+import Search from './Search/Search.jsx'
 import { Col } from 'reactstrap'
 
 class App extends Component {
@@ -87,25 +87,27 @@ class App extends Component {
   }
 
   render() {
+    const { placesFiltered, placeToShow, isOpen, center} = this.state;
+
     return (
       <div className="App">
-          <Col md={3}>
+          <Col md={ 3 }>
             <Search
-              places = {this.state.placesFiltered}
-              onInputChanged = {(input) => this.onInputChanged(input)}
-              onToggleOpen={(placeToShow, isOpen) => this.onToggleOpen(placeToShow, isOpen)}
+              places = { placesFiltered }
+              onInputChanged = { (input) => this.onInputChanged(input) }
+              onToggleOpen={ (placeToShow, isOpen) => this.onToggleOpen(placeToShow, isOpen) }
             />
           </Col>
-          <Col md={9}>
+          <Col md={ 9 }>
             <Map
-              places = {this.state.placesFiltered}
-              placeToShow={this.state.placeToShow}
-              isOpen={this.state.isOpen}
-              center={this.state.center}
-              onToggleOpen={(placeToShow, isOpen) => this.onToggleOpen(placeToShow, isOpen)}
-              containerElement={<div style={{ height: `67em` }} />}
-              mapElement={<div style={{ height: `100%` }} />}
-              loadingElement={<div style={{ height: `100%` }}></div>}
+              places = { placesFiltered }
+              placeToShow={ placeToShow }
+              isOpen={ isOpen }
+              center={ center }
+              onToggleOpen={ (placeToShow, isOpen) => this.onToggleOpen(placeToShow, isOpen) }
+              containerElement={ <div style={{ height: `67em` }} /> }
+              mapElement={ <div style={{ height: `100%` }} /> }
+              loadingElement={ <div style={ { height: `100%` } }></div> }
               googleMapURL='https://maps.googleapis.com/maps/api/js?key=AIzaSyCRQSQd7cwt1BdrCbwrB2gc01WwETqooZc&v=3&libraries=places,geometry,drawing'
             />
           </Col>

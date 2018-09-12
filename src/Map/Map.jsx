@@ -1,8 +1,8 @@
 /*eslint-disable no-undef*/
 
 import React from 'react'
-import { compose, lifecycle } from 'recompose'
-import { GoogleMap, withGoogleMap, withScriptjs, Marker, InfoWindow } from 'react-google-maps'
+import { compose } from 'recompose'
+import { GoogleMap, withGoogleMap, withScriptjs } from 'react-google-maps'
 import MarkerElement from './MarkerElement'
 
 const Map = compose(withScriptjs, withGoogleMap)((props) =>
@@ -13,11 +13,11 @@ const Map = compose(withScriptjs, withGoogleMap)((props) =>
     {props.places.map(row => {
       return (
         <MarkerElement
-          row={row}
-          placeToShow={props.placeToShow}
-          isOpen={props.isOpen}
-          onToggleOpen={(placeToShow, isOpen) => props.onToggleOpen(placeToShow, isOpen)}
-          places={props.places}
+          row={ row }
+          placeToShow={ props.placeToShow }
+          isOpen={ props.isOpen }
+          onToggleOpen={ (placeToShow, isOpen) => props.onToggleOpen(placeToShow, isOpen) }
+          places={ props.places }
         />
       )
     })}

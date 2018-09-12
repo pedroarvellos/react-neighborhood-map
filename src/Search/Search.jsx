@@ -4,12 +4,14 @@ import './Search.css'
 
 class Search extends Component {
   render() {
+    const { onToggleOpen, onInputChanged, places } = this.props;
+
     this.renderPlaces = place => {
-      return (<ListGroupItem className={'nav-option hover-option'} cursor={'pointer'} key={place.id} onClick={() => this.props.onToggleOpen(place.id, true)}>{place.name}</ListGroupItem>)
+      return (<ListGroupItem className={ 'nav-option hover-option' } cursor={ 'pointer' } key={ place.id } onClick={ () => onToggleOpen(place.id, true) }>{ place.name }</ListGroupItem>)
     }
 
     this.onChange = event => {
-      this.props.onInputChanged(event.target.value.trim())
+      onInputChanged(event.target.value.trim())
     }
 
     return (
@@ -18,11 +20,11 @@ class Search extends Component {
         <Form>
           <FormGroup>
             <Label>Input Place</Label>
-            <Input onChange = {this.onChange.bind(this)}/>
+            <Input onChange = { this.onChange.bind(this) }/>
           </FormGroup>
         </Form>
         <ListGroup>
-          {this.props.places.map(this.renderPlaces)}
+          { places.map(this.renderPlaces) }
         </ListGroup>
     </div>
     );
