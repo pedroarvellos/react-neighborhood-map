@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import Map from './Map/Map.jsx'
 import Search from './Search/Search.jsx'
+import escapeRegExp from "escape-string-regexp";
 import { Col } from 'reactstrap'
 
 class App extends Component {
@@ -75,11 +76,17 @@ class App extends Component {
   }
 
   onInputChanged = (input) => {
-    this.setState(state => ({
-      placesFiltered: state.places.filter(place => {
-        return place.name.indexOf(input) > -1
-      })
-    }))
+    if(input) {
+      const match = new RegExp(escapeRegExp(input), "i");
+
+      this.setState(state => ({
+        placesFiltered: state.places.filter(place => {
+          return match.test(place.name)
+        })
+      }))
+    } else {
+      this.setState({placesFiltered: this.state.places})
+    }
   }
 
   onToggleOpen = (placeToShow, isOpen) => {
