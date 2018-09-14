@@ -1,4 +1,4 @@
-# my-reads.github.io
+# react-neighborhood-map.github.io
 
 My neighborhood map is the final test created for the Advanced Nanodegree Front-End Web Developer course, and it was created to implement my neighborhood and some great references around it. This is a React project and uses the purest concept of ES6, Recompose, React Google Maps and FourSquare API.
 
