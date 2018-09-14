@@ -17,12 +17,9 @@ class Search extends Component {
     return (
       <div>
         <br/>
-        <Form>
-          <FormGroup>
-            <Label>Input Place</Label>
-            <Input onChange = { this.onChange.bind(this) }/>
-          </FormGroup>
-        </Form>
+        <Label>Input Place</Label>
+        <Input onChange = { this.onChange.bind(this) }/>
+
         <ListGroup>
           { places.map(this.renderPlaces) }
         </ListGroup>
