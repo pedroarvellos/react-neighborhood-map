@@ -95,7 +95,7 @@ class App extends Component {
     }
   }
 
-  onToggleOpen = (placeToShow, isOpen) => {
+  onToggle = (placeToShow, isOpen) => {
     this.setState({ placeToShow, isOpen });
   }
 
@@ -108,7 +108,7 @@ class App extends Component {
             <Search
               places = { placesFiltered }
               onInputChanged = { (input) => this.onInputChanged(input) }
-              onToggleOpen={ (placeToShow, isOpen) => this.onToggleOpen(placeToShow, isOpen) }
+              onToggle={ (placeToShow, isOpen) => this.onToggle(placeToShow, isOpen) }
             />
           </Col>
           <Col md={ 9 }>
@@ -119,7 +119,7 @@ class App extends Component {
                 placeToShow={ placeToShow }
                 isOpen={ isOpen }
                 center={ center }
-                onToggleOpen={ (placeToShow, isOpen) => this.onToggleOpen(placeToShow, isOpen) }
+                onToggle={ (placeToShow, isOpen) => this.onToggle(placeToShow, isOpen) }
                 containerElement={ <div style={{ height: `67em` }} /> }
                 mapElement={ <div style={{ height: `100%` }} /> }
                 loadingElement={ <div style={ { height: `100%` } }></div> }

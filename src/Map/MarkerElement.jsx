@@ -29,19 +29,19 @@ class MarkerElement extends Component {
 
   render() {
     const { placeAdditionalDetails } = this.state;
-    const { row, onToggleOpen, placeToShow, isOpen, animation } = this.props;
+    const { row, onToggle, placeToShow, isOpen, animation } = this.props;
 
     return (
       <Marker
         animation = { animation }
         position={ row.center }
         id={ row.id }
-        onClick={() => onToggleOpen(row.id, true)}
+        onClick={() => onToggle(row.id, true)}
         icon={ row.id === placeToShow  && isOpen ? { url: IconClicked} : { url: IconNotClicked} }>
           {
             row.id === placeToShow  && isOpen &&
             <Row>
-              <InfoWindow onClick={() => onToggleOpen(row.id, false)}>
+              <InfoWindow onCloseClick={() => onToggle(row.id, false)}>
                 {
                   !this.state.error ?
                     <CardBody>
