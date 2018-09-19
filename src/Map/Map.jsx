@@ -16,12 +16,14 @@ const Map = compose(withScriptjs, withGoogleMap)((props) =>
           row={ row }
           placeToShow={ props.placeToShow }
           isOpen={ props.isOpen }
-          onToggleOpen={ (placeToShow, isOpen) => props.onToggleOpen(placeToShow, isOpen) }
+          onToggle={ (placeToShow, isOpen) => props.onToggle(placeToShow, isOpen) }
           places={ props.places }
           key={ row.id }
+          animation= { google.maps.Animation.DROP }
         />
       )
     })}
+
   </GoogleMap>
 );
 

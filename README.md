@@ -12,6 +12,9 @@ Download the project directly or go to a specific folder and download it by git:
 
 * install all project dependencies with `npm install`
 * start the development server with `npm start`
+* or run it in production mode by `npm run build`
+
+Obs.: The Service Worker is created by create-react-app, but it just works in production mode.
 
 ## What You're Getting
 ```bash

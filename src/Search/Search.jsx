@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Form, FormGroup, Label, Input, ListGroup, ListGroupItem } from 'reactstrap'
+import { Label, Input, ListGroup, ListGroupItem } from 'reactstrap'
 import './Search.css'
 
 class Search extends Component {
@@ -7,7 +7,7 @@ class Search extends Component {
     const { onToggleOpen, onInputChanged, places } = this.props;
 
     this.renderPlaces = place => {
-      return (<ListGroupItem className={ 'nav-option hover-option' } cursor={ 'pointer' } key={ place.id } onClick={ () => onToggleOpen(place.id, true) }>{ place.name }</ListGroupItem>)
+      return (<ListGroupItem tabindex={'0'} className={ 'nav-option hover-option' } cursor={ 'pointer' } key={ place.id } onClick={ () => onToggleOpen(place.id, true) } onKeyPress={ () => onToggleOpen(place.id, true) }>{ place.name }</ListGroupItem>)
     }
 
     this.onChange = event => {
