@@ -40,6 +40,7 @@ Obs.: The Service Worker is created by create-react-app, but it just works in pr
     └── index.js
 
 The project can be opened in any text editor, for example: _Sublime Text_, _Visual Studio_,  _Atom_, etc. To execute the project.
+```bash
 
 ## Icons
 The marker icons were made by [Daniel Bruce](https://www.flaticon.com/authors/daniel-bruce) from www.flaticon.com
