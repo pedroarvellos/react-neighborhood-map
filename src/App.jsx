@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import Map from './Map/Map.jsx'
 import Search from './Search/Search.jsx'
 import escapeRegExp from "escape-string-regexp";
-import { Col } from 'reactstrap'
+import { Col, Alert } from 'reactstrap'
 
 class App extends Component {
   state = {
@@ -66,13 +66,19 @@ class App extends Component {
 
     placeToShow:[],
 
-    isOpen: false
+    isOpen: false,
+
+    mapError: false
   }
 
   componentDidMount(){
     this.setState(state => ({
       placesFiltered: state.places
     }))
+
+    window.gm_authFailure = () => {
+      this.setState({ mapError: true });
+    };
   }
 
   onInputChanged = (input) => {
@@ -94,7 +100,7 @@ class App extends Component {
   }
 
   render() {
-    const { placesFiltered, placeToShow, isOpen, center} = this.state;
+    const { placesFiltered, placeToShow, isOpen, center, mapError} = this.state;
 
     return (
       <div className="App">
@@ -106,17 +112,26 @@ class App extends Component {
             />
           </Col>
           <Col md={ 9 }>
-            <Map
-              places = { placesFiltered }
-              placeToShow={ placeToShow }
-              isOpen={ isOpen }
-              center={ center }
-              onToggleOpen={ (placeToShow, isOpen) => this.onToggleOpen(placeToShow, isOpen) }
-              containerElement={ <div style={{ height: `67em` }} /> }
-              mapElement={ <div style={{ height: `100%` }} /> }
-              loadingElement={ <div style={ { height: `100%` } }></div> }
-              googleMapURL='https://maps.googleapis.com/maps/api/js?key=AIzaSyCRQSQd7cwt1BdrCbwrB2gc01WwETqooZc&v=3&libraries=places,geometry,drawing'
-            />
+            {
+              !mapError ?
+              <Map
+                places = { placesFiltered }
+                placeToShow={ placeToShow }
+                isOpen={ isOpen }
+                center={ center }
+                onToggleOpen={ (placeToShow, isOpen) => this.onToggleOpen(placeToShow, isOpen) }
+                containerElement={ <div style={{ height: `67em` }} /> }
+                mapElement={ <div style={{ height: `100%` }} /> }
+                loadingElement={ <div style={ { height: `100%` } }></div> }
+                googleMapURL='https://maps.googleapis.com/maps/api/js?key=AIzaSyCRQSQd7cwt1BdrCbwrB2gc01WwETqooZc&v=3&libraries=places,geometry,drawing'
+              />
+              :
+              <div>
+                <br/>
+                <br/>
+                <h4 classNam e="alert-heading">Unfortunately it wasn't possible to get the map! :(</h4>
+              </div>
+            }
           </Col>
       </div>
     );

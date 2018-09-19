@@ -19,9 +19,11 @@ const Map = compose(withScriptjs, withGoogleMap)((props) =>
           onToggleOpen={ (placeToShow, isOpen) => props.onToggleOpen(placeToShow, isOpen) }
           places={ props.places }
           key={ row.id }
+          animation= { google.maps.Animation.DROP }
         />
       )
     })}
+
   </GoogleMap>
 );
 
