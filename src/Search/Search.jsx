@@ -7,7 +7,7 @@ class Search extends Component {
     const { onToggleOpen, onInputChanged, places } = this.props;
 
     this.renderPlaces = place => {
-      return (<ListGroupItem tabindex={'0'} className={ 'nav-option hover-option' } cursor={ 'pointer' } key={ place.id } onClick={ () => onToggleOpen(place.id, true) } onKeyPress={ () => onToggleOpen(place.id, true) }>{ place.name }</ListGroupItem>)
+      return (<ListGroupItem tabindex={'0'} className={ 'nav-option hover-option' } cursor={ 'pointer' } key={ place.id } onClick={ () => onToggle(place.id, true) } onKeyPress={ () => onToggle(place.id, true) }>{ place.name }</ListGroupItem>)
     }
 
     this.onChange = event => {
