@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { Marker, InfoWindow } from 'react-google-maps'
 import { CardBody, CardTitle, CardSubtitle, CardText, Row, Col, Alert } from 'reactstrap'
-import { getElementInfo } from './../Utils/FourSquareDAO'
+import { getElementInfo } from '../Utils/FourSquareDAO'
 import IconClicked from '../Img/maps-and-flags-blue.svg'
 import IconNotClicked from '../Img/maps-and-flags-red.svg'
 
